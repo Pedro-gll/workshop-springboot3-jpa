@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+//Conversa com o banco
 @Service
-public class UserServices {
+public class UserService {
 
     @Autowired
     private UserRepository repository;
@@ -20,6 +20,15 @@ public class UserServices {
 
     public User findById(Long id) {
         Optional<User> obj= repository.findById(id);
+        return obj.get();
+    }
+
+    public User getById(Long id){
+        return repository.findById(id).get();
+    }
+
+    public User findbyName(String nome) {
+        Optional<User> obj = repository.findByNome(nome);
         return obj.get();
     }
 }
