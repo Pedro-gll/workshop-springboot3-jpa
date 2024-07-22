@@ -1,8 +1,10 @@
 package com.pessoal.course.config;
 
+import com.pessoal.course.entites.Category;
 import com.pessoal.course.entites.Order;
 import com.pessoal.course.entites.User;
 import com.pessoal.course.entites.enums.OrderStatus;
+import com.pessoal.course.repositories.CategoryRepository;
 import com.pessoal.course.repositories.OrderRepository;
 import com.pessoal.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,18 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
 //Instanciando Objetos
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
         User u = new User(null, "Pedro Lima", "pedro@gmail", "11999999999", "123456");
         User u2 = new User(null, "Marcio Soares", "marcio@gmail", "11999999999", "123456");
 
@@ -36,5 +46,6 @@ public class TestConfig implements CommandLineRunner {
 //Adicionando ao Banco
         userRepository.saveAll(Arrays.asList(u,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
     }
 }
