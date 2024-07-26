@@ -1,14 +1,8 @@
 package com.pessoal.course.config;
 
-import com.pessoal.course.entites.Category;
-import com.pessoal.course.entites.Order;
-import com.pessoal.course.entites.Product;
-import com.pessoal.course.entites.User;
+import com.pessoal.course.entites.*;
 import com.pessoal.course.entites.enums.OrderStatus;
-import com.pessoal.course.repositories.CategoryRepository;
-import com.pessoal.course.repositories.OrderRepository;
-import com.pessoal.course.repositories.ProductRepository;
-import com.pessoal.course.repositories.UserRepository;
+import com.pessoal.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
 
     @Override
@@ -69,6 +66,14 @@ public class TestConfig implements CommandLineRunner {
 //Adicionando ao Banco
         userRepository.saveAll(Arrays.asList(u,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
         //productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
     }
