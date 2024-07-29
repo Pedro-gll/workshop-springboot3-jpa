@@ -34,7 +34,7 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
-    //cascade instancia o id do pagamento o mesmo do pedido
+    //cascade, instancia o id do pagamento o mesmo do pedido
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
